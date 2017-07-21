@@ -48,7 +48,7 @@
   (concat "*Minitest " file-or-dir "*"))
 
 (defun minitest-test-command ()
-   (cond (minitest-use-spring '("spring" "rake" "test"))
+   (cond (minitest-use-spring '("spring" "rails" "test"))
         ((minitest-zeus-p) '("zeus" "test"))
         (t minitest-default-command)))
 
@@ -122,7 +122,7 @@ The current directory is assumed to be the project's root otherwise."
     (mapconcat 'shell-quote-argument
                (-flatten
                 (--remove (eq nil it)
-                 (list (minitest-bundler-command) "rake"))) " ")))
+                 (list (minitest-bundler-command) "rails test"))) " ")))
 
 (defun minitest-verify ()
   "Run on current file."
